@@ -43,7 +43,7 @@ class PasswordManagerListTests(APITestCase):
         self.assertEqual(len(response.data), 0)
 
     @pytest.mark.django_db
-    def test_foreign_schools(self):
+    def test_foreign_managers(self):
         PasswordManagerFactory.create_batch(10)
         user = UserFactory()
         client.force_authenticate(user=user)
