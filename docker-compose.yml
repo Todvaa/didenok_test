@@ -1,0 +1,45 @@
+version: '3.3'
+services:
+  db:
+    image: postgres:13.0-alpine
+    restart: always
+    volumes:
+      - db:/var/lib/db/data/
+    expose:
+      - ${DB_PORT}
+    ports:
+      - '${DB_EXTERNAL_PORT}:${DB_PORT}'
+    env_file:
+      - .env
+  passwords_manager:
+    build:
+      dockerfile: docker/password_manager/Dockerfile
+      context: .
+    restart: always
+    volumes:
+      - static_value:/app/static/
+      - media_value:/app/media/
+    expose:
+      - '8000'
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+    env_file:
+      - .env
+    entrypoint: '/bin/bash /app/entrypoint'
+  nginx:
+    image: nginx:1.19.3
+    restart: always
+    ports:
+      - '80:80'
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - static_value:/var/html/static/
+      - media_value:/var/html/media/
+    depends_on:
+      - passwords_manager
+volumes:
+  db:
+  static_value:
+  media_value:
