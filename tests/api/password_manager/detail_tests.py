@@ -7,6 +7,8 @@ from tests.utils import client
 
 
 class PasswordManagerDetailTests(APITestCase):
+    """Tests for detailing a PasswordManager entry."""
+
     @pytest.mark.django_db
     def test_default(self):
         password_manager = PasswordManagerFactory()

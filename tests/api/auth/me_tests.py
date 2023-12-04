@@ -8,6 +8,8 @@ from tests.utils import client
 
 
 def check_token(test: APITestCase, token: str):
+    """Function to check JWT token validity."""
+
     client.credentials(HTTP_AUTHORIZATION='Bearer ' + token)
     response = client.get('/api/auth/me/')
     test.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -16,7 +18,8 @@ def check_token(test: APITestCase, token: str):
     return response
 
 
-class SigninTests(APITestCase):
+class MeTests(APITestCase):
+    """Test class for 'auth/me/' endpoint functionality"""
     @pytest.mark.django_db
     def test_valid(self):
         user = UserFactory()

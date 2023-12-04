@@ -16,11 +16,17 @@ class PasswordEncryptor:
     CIPHER_SUITE = Fernet(KEY)
 
     def encrypt_password(self, password: str) -> bytes:
+        """Encrypt the provided password using
+         the Fernet encryption algorithm."""
+
         return self.CIPHER_SUITE.encrypt(password.encode())
 
     def decrypt_password(
             self, encoded_password: Union[memoryview, bytes]
     ) -> str:
+        """Decrypts the provided encoded password using
+         the Fernet encryption algorithm."""
+
         try:
             if isinstance(encoded_password, memoryview):
                 encoded_password = encoded_password.tobytes()

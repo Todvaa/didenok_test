@@ -9,6 +9,8 @@ from password_manager.models import PasswordManager
 
 
 class AuthSerializer(Serializer):
+    """Serializer for Auth Views."""
+
     username = CharField(max_length=255, required=True)
     password = CharField(
         max_length=150, write_only=True, required=True
@@ -16,6 +18,8 @@ class AuthSerializer(Serializer):
 
 
 class PasswordManagerSerializer(ModelSerializer):
+    """Serializer for PasswordManager."""
+
     password = CharField(max_length=255, required=True)
     service_name = CharField(max_length=255, required=True)
 

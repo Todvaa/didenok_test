@@ -15,6 +15,8 @@ from password_manager.models import User, PasswordManager
 
 
 class MeView(GenericAPIView):
+    """View for obtain information about user."""
+
     serializer_class = AuthSerializer
 
     def get(self, request):
@@ -22,6 +24,8 @@ class MeView(GenericAPIView):
 
 
 class UserSignUpView(GenericAPIView):
+    """View for User registration."""
+
     permission_classes = (AllowAny,)
     serializer_class = AuthSerializer
 
@@ -51,6 +55,8 @@ class UserSignUpView(GenericAPIView):
 
 
 class UserTokenObtainPairView(GenericAPIView):
+    """View for User login."""
+
     permission_classes = (AllowAny,)
     serializer_class = AuthSerializer
 
@@ -80,12 +86,16 @@ class UserTokenObtainPairView(GenericAPIView):
 
 
 class PasswordManagerViewSet(CreateRetrieveListViewSet):
+    """ViewSet for PasswordManager."""
+
     serializer_class = PasswordManagerSerializer
     permission_classes = (IsOwner & IsAuthenticated,)
     filter_backends = (ServiceNameSearchFilter,)
     lookup_field = 'service_name'
 
     def create(self, request, service_name) -> Response:
+        """Creates and updates a password for the service."""
+
         password_manager_data = {
             'password': request.data.get('password'),
             'service_name': service_name,

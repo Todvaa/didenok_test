@@ -7,6 +7,8 @@ from tests.utils import client
 
 
 class PasswordManagerListTests(APITestCase):
+    """Tests for finding and retrieving a PasswordManager entry."""
+
     @pytest.mark.django_db
     def test_default(self):
         user = UserFactory()

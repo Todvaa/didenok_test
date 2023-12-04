@@ -8,6 +8,8 @@ from tests.utils import fake, client
 
 
 class SignupTests(APITestCase):
+    """Test class for Signin functionality."""
+
     @pytest.mark.django_db
     def test_valid(self):
         response = client.post('/api/auth/signup/', {

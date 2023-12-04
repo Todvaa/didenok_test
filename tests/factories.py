@@ -12,6 +12,8 @@ from tests.utils import fake
 
 
 class UserFactory(DjangoModelFactory):
+    """Factory for generating fake User instances."""
+
     class Meta:
         model = User
 
@@ -20,6 +22,8 @@ class UserFactory(DjangoModelFactory):
 
 
 class PasswordManagerFactory(DjangoModelFactory):
+    """Factory for generating fake PasswordManager instances."""
+
     class Meta:
         model = PasswordManager
 

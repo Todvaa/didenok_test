@@ -8,6 +8,8 @@ from tests.utils import client
 
 
 class SigninTests(APITestCase):
+    """Test class for Signin functionality."""
+
     @pytest.mark.django_db
     def test_valid(self):
         user = UserFactory()

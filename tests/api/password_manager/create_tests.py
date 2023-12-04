@@ -7,6 +7,8 @@ from tests.utils import client
 
 
 class PasswordManagerCreateTests(APITestCase):
+    """Tests for creating a PasswordManager entry."""
+
     @pytest.mark.django_db
     def test_valid(self):
         password_manager = PasswordManagerFactory.build()
